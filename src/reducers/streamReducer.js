@@ -1,4 +1,4 @@
-import _ from "lowdash";
+import _ from "lodash";
 import {
   FETCH_STREAMS,
   FETCH_STREAM,
