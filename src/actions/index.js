@@ -1,4 +1,5 @@
 import streams from "../apis/streams";
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -33,6 +34,10 @@ export const createStream = (formValues) => {
       type: CREATE_STREAM,
       payload: response.data,
     });
+
+    // *** do some programmatic navigation to get the user back to the root route (after dispatch)
+    // *** note: .push() is how we navigate a user around
+    history.push("/");
   };
 };
 
