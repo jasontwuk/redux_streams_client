@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
@@ -9,7 +10,9 @@ class StreamEdit extends React.Component {
   }
 
   onSubmit = (formValues) => {
-    console.log(formValues);
+    // console.log(formValues);
+
+    this.props.editStream(this.props.match.params.id, formValues);
   };
 
   render() {
@@ -24,7 +27,8 @@ class StreamEdit extends React.Component {
         <h3>Edit a Stream</h3>
         <StreamForm
           // *** this.props.stream is an object with a "title" and "description" properities
-          initialValues={this.props.stream}
+          // *** use _.pick() to access "title" and "description" properities, because we don't want to pass "id" and "userId" properities down to formValues
+          initialValues={_.pick(this.props.stream, "title", "description")}
           onSubmit={this.onSubmit}
         />
       </div>

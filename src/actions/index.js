@@ -65,12 +65,17 @@ export const fetchStream = (id) => {
 
 export const editStream = (id, formValues) => {
   return async (dispatch) => {
-    const response = await streams.put(`/streams/${id}`, formValues);
+    // *** use .patch() request instead of .put() because when we edit a stream we only want to change part of properties in that stream object
+    const response = await streams.patch(`/streams/${id}`, formValues);
 
     dispatch({
       type: EDIT_STREAM,
       payload: response.data,
     });
+
+    // *** do some programmatic navigation to get the user back to the root route (after dispatch)
+    // *** note: .push() is how we navigate a user around
+    history.push("/");
   };
 };
 
