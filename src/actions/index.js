@@ -87,5 +87,9 @@ export const deleteStream = (id) => {
       type: DELETE_STREAM,
       payload: id,
     });
+
+    // *** do some programmatic navigation to get the user back to the root route (after dispatch)
+    // *** note: .push() is how we navigate a user around
+    history.push("/");
   };
 };
